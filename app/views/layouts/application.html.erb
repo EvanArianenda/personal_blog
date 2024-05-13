@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PersonalBlog</title>
+    <title>Personal Blog</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,19 @@
   </head>
 
   <body>
+    <div>
+      <% if user_signed_in? %>
+        <%= link_to "Profile", edit_user_registration_path %>
+        <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Sign In", new_user_session_path %>
+      <% end %>
+
+    </div>
+    <div>
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+    </div>
     <%= yield %>
   </body>
 </html>
